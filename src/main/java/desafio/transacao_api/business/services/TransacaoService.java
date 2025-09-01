@@ -28,9 +28,32 @@ public class TransacaoService {
         if (dto.dataHora().isAfter(OffsetDateTime.now())) {
 
             log.error("Tentativa de adicionar transação com data futura: {}", dto);
-            throw new UnprocessableEntity("Transação com data futura não é permitida"
-            );
+            throw new UnprocessableEntity("Transação com data futura não é permitida");
         }
+
+        if (dto.valor() == null || dto.valor() <= 0) {
+
+            log.error("Tentativa de adicionar transação com valor inválido: {}", dto);
+            throw new UnprocessableEntity("Valor da transação deve ser maior que zero");
+        }
+
+        listaTransacoes.add(dto);
+
     }
 
+
+    public void limparTransacoes() {
+
+        listaTransacoes.clear();
+    }
+
+    public List<TransacaoRequestDTO> buscarTransacoes(Integer intervaloBusca) {
+
+        OffsetDateTime dataHoraIntervalo = OffsetDateTime.now().minusSeconds(intervaloBusca);
+        return listaTransacoes.stream()
+                .filter(t -> t.dataHora().isAfter(dataHoraIntervalo))
+                .toList();
+    }
+
+    
 }
