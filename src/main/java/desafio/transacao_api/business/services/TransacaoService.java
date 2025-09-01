@@ -34,20 +34,25 @@ public class TransacaoService {
             log.error("Tentativa de adicionar transação com valor inválido: {}", dto);
             throw new UnprocessableEntity("Valor da transação deve ser maior que zero");
         }
-
+  
         listaTransacoes.add(dto);
+        log.info("Transacoes adicionadas com sucesso");
 
     }
 
 
     public void limparTransacoes() {
 
-        listaTransacoes.clear();
+            log.info("Inciado processamento para deletar transações");
+            listaTransacoes.clear();
+            log.info("Transaçoes excluídas com sucesso");
     }
 
     public List<TransacaoRequestDTO> buscarTransacoes(Integer intervaloBusca) {
-
+          log.info("Inciado busca de transações por tempo");
         OffsetDateTime dataHoraIntervalo = OffsetDateTime.now().minusSeconds(intervaloBusca);
+
+         log.info("Retorno de transações por tempo");
         return listaTransacoes.stream()
                 .filter(t -> t.dataHora().isAfter(dataHoraIntervalo))
                 .toList();
