@@ -5,11 +5,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import desafio.transacao_api.controller.dtos.TransacaoRequestDTO;
+import desafio.transacao_api.infrastructure.exceptions.UnprocessableEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,9 +28,7 @@ public class TransacaoService {
         if (dto.dataHora().isAfter(OffsetDateTime.now())) {
 
             log.error("Tentativa de adicionar transação com data futura: {}", dto);
-            throw new ResponseStatusException(
-                HttpStatus.UNPROCESSABLE_ENTITY, 
-                "Transação com data futura não é permitida"
+            throw new UnprocessableEntity("Transação com data futura não é permitida"
             );
         }
     }
