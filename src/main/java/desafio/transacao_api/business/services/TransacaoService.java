@@ -9,12 +9,10 @@ import org.springframework.stereotype.Service;
 
 import desafio.transacao_api.controller.dtos.TransacaoRequestDTO;
 import desafio.transacao_api.infrastructure.exceptions.UnprocessableEntity;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class TransacaoService {
 
@@ -56,4 +54,12 @@ public class TransacaoService {
     }
 
     
-}
+
+   
+}    
+
+
+    
+
+
+
