@@ -12,4 +12,7 @@ public class UnprocessableEntity extends RuntimeException {
         super(message);
     }
 
+
+    
+
 }
