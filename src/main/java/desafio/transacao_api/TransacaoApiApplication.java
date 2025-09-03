@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 
 @OpenAPIDefinition(
     servers = {
-        @Server(url = "https://friendly-space-cod-pjrwr664qwqvf6659-3336.app.github.dev")
+        @Server(url = "https://friendly-space-cod-pjrwr664qwqvf6659-3335.app.github.dev")
     }
 )
 @SpringBootApplication
