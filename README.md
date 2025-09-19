@@ -12,8 +12,7 @@ API REST desenvolvida com **Java 17 + Spring Boot** para registrar, listar e ger
 - **Projeto:** Transação API  
 - **Objetivo:** CRUD de transações, filtros por período/tipo e operações de consulta  
 - **Arquitetura:** REST, camadas Controller → Service → Repository, DTOs e validação  
-- **Banco:** H2 em modo arquivo  
-- **Deploy:** Render.com  
+
 - **Status:** Produção/Estudo
 
 ---
@@ -26,8 +25,7 @@ API REST desenvolvida com **Java 17 + Spring Boot** para registrar, listar e ger
 - Spring Boot  
 - Maven  
 - H2 Database  
-- Docker  
-- Render.com
+
 
 ---
 
@@ -54,15 +52,6 @@ API REST desenvolvida com **Java 17 + Spring Boot** para registrar, listar e ger
 
 Crie ou ajuste o arquivo `application.properties`:
 
-```properties
-server.port=${SERVER_PORT:8080}
-spring.datasource.url=jdbc:h2:file:./data/transacoes
-spring.datasource.username=sa
-spring.datasource.password=
-spring.datasource.driver-class-name=org.h2.Driver
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.h2.console.enabled=true
 spring.h2.console.path=/h2-console
 ▶️ Como executar
 bash
