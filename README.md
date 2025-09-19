@@ -1,9 +1,8 @@
-markdown
 # 💸 Transação API
 
 ![GIF de transações](https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif)
 
-API REST desenvolvida com **Java 17 + Spring Boot** para registrar, listar e gerenciar transações financeiras. Projetada para estudo, integração e evolução incremental, com arquitetura em camadas e persistência em H2.
+API REST desenvolvida com **Java 17 + Spring Boot** para registrar, listar e gerenciar transações financeiras. Projetada para estudo, integração e evolução incremental, com arquitetura em camadas e dados mantidos em memória — **sem persistência em banco de dados**.
 
 ---
 
@@ -12,8 +11,8 @@ API REST desenvolvida com **Java 17 + Spring Boot** para registrar, listar e ger
 - **Projeto:** Transação API  
 - **Objetivo:** CRUD de transações, filtros por período/tipo e operações de consulta  
 - **Arquitetura:** REST, camadas Controller → Service → Repository, DTOs e validação  
-
-- **Status:** Produção/Estudo
+- **Status:** Produção/Estudo  
+- **Persistência:** Dados em memória (sem banco de dados)
 
 ---
 
@@ -24,8 +23,8 @@ API REST desenvolvida com **Java 17 + Spring Boot** para registrar, listar e ger
 - Java 17  
 - Spring Boot  
 - Maven  
-- H2 Database  
-
+- Docker  
+- Render.com
 
 ---
 
@@ -35,8 +34,8 @@ API REST desenvolvida com **Java 17 + Spring Boot** para registrar, listar e ger
 - Listagem com filtros (tipo, datas, descrição)  
 - Consulta de saldo e estatísticas  
 - Exclusão por ID  
-- Console H2 disponível em `/h2-console`  
-- Respostas de erro padronizadas
+- Respostas de erro padronizadas  
+- Dados armazenados em memória durante execução
 
 ---
 
@@ -48,22 +47,18 @@ API REST desenvolvida com **Java 17 + Spring Boot** para registrar, listar e ger
 
 ---
 
-## ⚙️ Configuração
+## ⚙️ Como executar
 
-Crie ou ajuste o arquivo `application.properties`:
-
-spring.h2.console.path=/h2-console
-▶️ Como executar
-bash
+```bash
 git clone https://github.com/RafaelEliasIoppi/transacao-api.git
 cd transacao-api
 mvn clean package -DskipTests
 mvn spring-boot:run
 # ou
 java -jar target/transacao-api.jar
-A aplicação estará disponível em http://localhost:8080.
 
 🐳 Executando com Docker
+Dockerfile
 dockerfile
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
@@ -76,6 +71,7 @@ COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
 ENV JAVA_OPTS="-Xms256m -Xmx512m"
 ENTRYPOINT ["sh","-c","java $JAVA_OPTS -jar app.jar"]
+Comandos
 bash
 docker build -t transacao-api .
 docker run -p 8080:8080 --name transacao transacao-api
@@ -126,8 +122,7 @@ src/
 │  │     ├─ model/
 │  │     └─ dto/
 │  └─ resources/
-│     ├─ application.properties
-│     └─ data.sql (opcional)
+│     └─ application.properties
 └─ test/
 🧪 Testes
 bash
@@ -153,10 +148,3 @@ Variáveis: SERVER_PORT=8080
 Este projeto está sob a licença MIT. Sinta-se à vontade para usar, modificar e contribuir!
 
 Feito com 💙 por Rafael Elias Ioppi
-
-
-Código
-
----
-
-Se quiser que eu crie os GIFs com base na interface real do seu sistema, posso te
